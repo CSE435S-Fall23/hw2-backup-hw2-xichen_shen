@@ -23,7 +23,12 @@ import net.sf.jsqlparser.expression.Function;
 import net.sf.jsqlparser.statement.select.AllColumns; 
 import net.sf.jsqlparser.statement.select.SelectExpressionItem; 
 
-
+/**
+ * 
+ * Student1: Jacob Shen
+ * Student2: Xi Chen
+ *
+ */
 public class Query {
 
 	private String q;

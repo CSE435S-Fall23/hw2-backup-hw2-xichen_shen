@@ -9,6 +9,12 @@ import java.util.stream.Collectors;
  * @author Doug Shook
  *
  */
+/**
+ * 
+ * Student1: Jacob Shen
+ * Student2: Xi Chen
+ *
+ */
 public class Relation {
 
 	private ArrayList<Tuple> tuples;

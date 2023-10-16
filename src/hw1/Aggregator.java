@@ -9,6 +9,12 @@ import java.util.Map;
  * @author Doug Shook
  *
  */
+/**
+ * 
+ * Student1: Jacob Shen
+ * Student2: Xi Chen
+ *
+ */
 public class Aggregator {
     private Map<String, Integer> groupMap;
     private AggregateOperator o;

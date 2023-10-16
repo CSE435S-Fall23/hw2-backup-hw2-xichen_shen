@@ -64,7 +64,7 @@ public class YourUnitTests {
 		atd = c.getTupleDesc(tableId);
 		ahf = c.getDbFile(tableId);
 	}
-	
+	//Check Alias works
 	@Test
 	public void testAlias() {
         Query q = new Query("SELECT a1 AS alias1, a2 AS alias2 FROM A");
@@ -78,7 +78,7 @@ public class YourUnitTests {
         assertTrue(r.getDesc().getFieldName(1).equals("alias2"));
 
     }
-	
+	//Check Alias works for WHERE
 	@Test
 	public void testAliasWithWhere() {
 
@@ -103,7 +103,7 @@ public class YourUnitTests {
 	    }
 	}
 
-	
+	//Check Min works in AggregateOperator
 	@Test
 	public void test_Relation_Aggregate_Min() {
 		Relation ar = new Relation(ahf.getAllTuples(), atd);
@@ -123,6 +123,7 @@ public class YourUnitTests {
 		assertTrue("The MIN of these values was incorrect", agg.getValue() == 1);
 	}
 	
+	//Check Max works in AggregateOperator
 	@Test
 	public void test_Relation_Aggregate_Max() {
 		Relation ar = new Relation(ahf.getAllTuples(), atd);
@@ -142,6 +143,7 @@ public class YourUnitTests {
 		assertTrue("The MAX of these values was incorrect", agg.getValue() == 8);
 	}
 	
+	////Check COUNT works for string in AggregateOperator
 	@Test
 	public void test_Relation_Aggregate_COUNT_String() {
 		Relation ar = new Relation(testhf.getAllTuples(), testtd);
