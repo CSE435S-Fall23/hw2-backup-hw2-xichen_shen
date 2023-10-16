@@ -1,5 +1,10 @@
 package hw1;
 import java.util.*;
+/*
+ * Name1: Xi Chen
+ * Name2: Jacob Shen
+ */
+
 
 /**
  * TupleDesc describes the schema of a tuple.
@@ -19,6 +24,8 @@ public class TupleDesc {
      */
     public TupleDesc(Type[] typeAr, String[] fieldAr) {
     	//your code here
+        this.types = typeAr;
+        this.fields = fieldAr;
     }
 
     /**
@@ -26,7 +33,7 @@ public class TupleDesc {
      */
     public int numFields() {
         //your code here
-    	return 0;
+    	return fields.length;
     }
 
     /**
@@ -38,7 +45,10 @@ public class TupleDesc {
      */
     public String getFieldName(int i) throws NoSuchElementException {
         //your code here
-    	return null;
+    	if (i >= 0 && i < fields.length) {
+            return fields[i];
+        }
+        throw new NoSuchElementException();
     }
 
     /**
@@ -50,7 +60,12 @@ public class TupleDesc {
      */
     public int nameToId(String name) throws NoSuchElementException {
         //your code here
-    	return 0;
+    	for (int i = 0; i < fields.length; i++) {
+            if (name.equals(fields[i])) {
+                return i;
+            }
+        }
+        throw new NoSuchElementException();
     }
 
     /**
@@ -62,7 +77,10 @@ public class TupleDesc {
      */
     public Type getType(int i) throws NoSuchElementException {
         //your code here
-    	return null;
+    	if (i >= 0 && i < types.length) {
+            return types[i];
+        }
+        throw new NoSuchElementException();
     }
 
     /**
@@ -71,7 +89,15 @@ public class TupleDesc {
      */
     public int getSize() {
     	//your code here
-    	return 0;
+    	int size = 0;
+        for (int i = 0; i < types.length; i++) {
+            if (types[i].equals(Type.INT)) {
+                size += 4;
+            } else if (types[i].equals(Type.STRING)) {
+                size += 129;
+            }
+        }
+        return size;
     }
 
     /**
@@ -83,7 +109,9 @@ public class TupleDesc {
      * @return true if the object is equal to this TupleDesc.
      */
     public boolean equals(Object o) {
-    	//your code here
+    	if(o.toString().equals(this.toString())) {
+    		return true;
+    	}
     	return false;
     }
     
@@ -91,7 +119,9 @@ public class TupleDesc {
     public int hashCode() {
         // If you want to use TupleDesc as keys for HashMap, implement this so
         // that equal objects have equals hashCode() results
-        throw new UnsupportedOperationException("unimplemented");
+        int result = Arrays.hashCode(types);
+        result = 31 * result + Arrays.hashCode(fields);
+        return result;
     }
 
     /**
@@ -102,6 +132,18 @@ public class TupleDesc {
      */
     public String toString() {
         //your code here
-    	return "";
+    	String result = "";
+        for (int i = 0; i < types.length; i++) {
+            if (fields[i] != null) {
+                result += types[i] + "(" + fields[i] + ")";
+            } else {
+                result += types[i] + "(null)";
+            }
+            if (i != types.length - 1) {
+                result += ", ";
+            }
+        }
+        return result;
+
     }
 }

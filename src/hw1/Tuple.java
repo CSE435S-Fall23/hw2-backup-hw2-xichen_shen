@@ -2,6 +2,10 @@ package hw1;
 
 import java.sql.Types;
 import java.util.HashMap;
+/*
+ * Name1: Xi Chen
+ * Name2: Jacob Shen
+ */
 
 /**
  * This class represents a tuple that will contain a single row's worth of information
@@ -15,13 +19,20 @@ public class Tuple {
 	 * Creates a new tuple with the given description
 	 * @param t the schema for this tuple
 	 */
+	private Field[] fields;
+    private TupleDesc tupleDesc;
+    private int pid;
+    private int id;
+
 	public Tuple(TupleDesc t) {
 		//your code here
+		this.tupleDesc = t;
+		this.fields = new Field[t.numFields()];
 	}
 	
 	public TupleDesc getDesc() {
 		//your code here
-		return null;
+		return this.tupleDesc;
 	}
 	
 	/**
@@ -30,11 +41,12 @@ public class Tuple {
 	 */
 	public int getPid() {
 		//your code here
-		return 0;
+		return this.pid;
 	}
 
 	public void setPid(int pid) {
 		//your code here
+		this.pid = pid;
 	}
 
 	/**
@@ -43,15 +55,17 @@ public class Tuple {
 	 */
 	public int getId() {
 		//your code here
-		return 0;
+		return this.id;
 	}
 
 	public void setId(int id) {
 		//your code here
+		this.id = id;
 	}
 	
 	public void setDesc(TupleDesc td) {
 		//your code here;
+		this.tupleDesc = td;
 	}
 	
 	/**
@@ -61,11 +75,12 @@ public class Tuple {
 	 */
 	public void setField(int i, Field v) {
 		//your code here
+		fields[i] = v;
 	}
 	
 	public Field getField(int i) {
 		//your code here
-		return null;
+		return fields[i];
 	}
 	
 	/**
@@ -75,7 +90,18 @@ public class Tuple {
 	 */
 	public String toString() {
 		//your code here
-		return "";
+		String result = "";
+		for (int i = 0; i < tupleDesc.numFields(); i++) {
+			if (tupleDesc.getType(i) == Type.INT) {
+				result += ((IntField)fields[i]).getValue() + " ";
+			} else {
+				result += ((StringField)fields[i]).getValue() + " ";
+			}
+		}
+		return result;
+		
 	}
 }
+	
+	
 	
